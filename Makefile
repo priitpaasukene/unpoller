@@ -69,8 +69,7 @@ build: export DOCKER_IMAGE_NAME = unpoller/unpoller
 build: export GPG_SIGNING_KEY = 
 
 build: clean
-	goreleaser release --clean --skip-validate --skip-publish --skip-sign --debug
-
+	goreleaser release --clean --skip=validate,publish,sign --verbose
 clean:
 	git clean -xdf || true
 	(docker images -f "dangling=true" -q | xargs docker rmi) || true
